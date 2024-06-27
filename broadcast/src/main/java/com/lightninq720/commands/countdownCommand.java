@@ -1,5 +1,7 @@
 package com.lightninq720.commands;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.bukkit.Bukkit;
 import com.lightninq720.Broadcast;
 import org.bukkit.ChatColor;
@@ -24,25 +26,30 @@ public class countdownCommand implements CommandExecutor{
             }
 
             int seconds = Integer.parseInt(args[0]);
+            AtomicInteger atomicSeconds = new AtomicInteger(seconds);
 
             if (seconds < 0){
                 sender.sendMessage(ChatColor.RED + "Seconds must be a positive integer");
                 return true;
             }
+            Runnable countdownRunnable = new Runnable(){
+                @Override
+                public void run(){
+                    while (atomicSeconds.get() > 0){
+                        Bukkit.broadcastMessage(ChatColor.RED + "[Broadcast] " + ChatColor.WHITE + atomicSeconds.get() + " " + "seconds");
+                        atomicSeconds.decrementAndGet();
 
-            while (seconds > 0){
-                Bukkit.broadcastMessage(ChatColor.RED + "[Broadcast] " + seconds + " " + "seconds");
-                seconds--;
-
-                try{
-                    Thread.sleep(1000);
-                }catch(InterruptedException e){
-                    System.err.println("Countdown Interrupted");
-                    sender.sendMessage("An error occured while performing countdown command");
-                    return true;
-                }
-                }
-
+                        try{
+                            Thread.sleep(1000);
+                        }catch(InterruptedException e){
+                            System.err.println("Countdown Interrupted");
+                            sender.sendMessage("An error occured while performing countdown command");
+                        }
+                        }
+                    }
+                };
+                Thread countdownThread = new Thread(countdownRunnable);
+                countdownThread.start();
         }else{
             sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
         }

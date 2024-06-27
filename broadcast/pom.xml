@@ -5,7 +5,7 @@
   <groupId>com.lightninq720</groupId>
   <artifactId>broadcast</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <name>broadcast</name>
 

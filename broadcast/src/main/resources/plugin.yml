@@ -1,0 +1,9 @@
+name: Broadcast
+version: 0.0.1
+main: com.lightninq720.Broadcast
+description: Broadcast plugin
+
+commands:
+  broadcast:
+    description: Send a broadcasted message to all server players
+    usage: /broadcast <message>

@@ -7,3 +7,6 @@ commands:
   broadcast:
     description: Send a broadcasted message to all server players
     usage: /broadcast <message>
+  countdown:
+    description: Start a countdown to send to all server players
+    usage: /countdown <seconds>

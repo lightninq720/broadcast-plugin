@@ -16,11 +16,12 @@ public class Broadcast extends JavaPlugin{
     @Override
     public void onEnable(){
         getCommand("broadcast").setExecutor(new broadcastCommand(this));
-        getLogger().info("LaunchPad has been enabled!");
+        getCommand("countdown").setExecutor(new countdownCommand(this));
+        getLogger().info("Broadcast has been enabled!");
     }
 
     @Override
     public void onDisable(){
-        getLogger().info("LaunchPad has been disabled!");
+        getLogger().info("Broadcast has been disabled!");
     }
 }

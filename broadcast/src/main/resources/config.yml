@@ -1,0 +1,5 @@
+messages:
+  broadcastPrefix: "&c[Broadcast] "
+  noPermissions: "&cYou do not have permission to use this command"
+  invalidInteger: "&cYou must use a positive integer"
+  generalError: "&cAn error occured while performing the command"

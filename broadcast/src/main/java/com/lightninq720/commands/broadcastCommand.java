@@ -20,12 +20,12 @@ public class broadcastCommand implements CommandExecutor {
             if (sender.isOp()) {
                 if (args.length > 0) {
                     String message = String.join(" ", args);
-                    Bukkit.broadcastMessage(ChatColor.RED + "[Broadcast] " + ChatColor.WHITE + message);
+                    Bukkit.broadcastMessage(plugin.getConfigManager().getMessage("broadcastPrefix") + ChatColor.WHITE + message);
                 } else {
                     sender.sendMessage(ChatColor.RED + "Please provide a message to broadcast.");
                 }
             } else {
-                sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
+                sender.sendMessage(plugin.getConfigManager().getMessage("noPermissions"));
             }
             return true;
         }

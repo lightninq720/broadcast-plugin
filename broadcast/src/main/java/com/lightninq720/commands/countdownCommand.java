@@ -29,21 +29,21 @@ public class countdownCommand implements CommandExecutor{
             AtomicInteger atomicSeconds = new AtomicInteger(seconds);
 
             if (seconds < 0){
-                sender.sendMessage(ChatColor.RED + "Seconds must be a positive integer");
+                sender.sendMessage(plugin.getConfigManager().getMessage("invalidInteger"));
                 return true;
             }
             Runnable countdownRunnable = new Runnable(){
                 @Override
                 public void run(){
                     while (atomicSeconds.get() > 0){
-                        Bukkit.broadcastMessage(ChatColor.RED + "[Broadcast] " + ChatColor.WHITE + atomicSeconds.get() + " " + "seconds");
+                        Bukkit.broadcastMessage(plugin.getConfigManager().getMessage("broadcastPrefix") + ChatColor.WHITE + atomicSeconds.get() + " " + "seconds");
                         atomicSeconds.decrementAndGet();
 
                         try{
                             Thread.sleep(1000);
                         }catch(InterruptedException e){
                             System.err.println("Countdown Interrupted");
-                            sender.sendMessage("An error occured while performing countdown command");
+                            sender.sendMessage(plugin.getConfigManager().getMessage("generalError"));
                         }
                         }
                     }
@@ -51,7 +51,7 @@ public class countdownCommand implements CommandExecutor{
                 Thread countdownThread = new Thread(countdownRunnable);
                 countdownThread.start();
         }else{
-            sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
+            sender.sendMessage(plugin.getConfigManager().getMessage("noPermissions"));
         }
         return true;
     }

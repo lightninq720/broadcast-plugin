@@ -22,7 +22,7 @@ public class broadcastCommand implements CommandExecutor {
                     String message = String.join(" ", args);
                     Bukkit.broadcastMessage(plugin.getConfigManager().getMessage("broadcastPrefix") + ChatColor.WHITE + message);
                 } else {
-                    sender.sendMessage(ChatColor.RED + "Please provide a message to broadcast.");
+                    sender.sendMessage(plugin.getConfigManager().getMessage("noMessage"));
                 }
             } else {
                 sender.sendMessage(plugin.getConfigManager().getMessage("noPermissions"));

@@ -21,7 +21,7 @@ public class countdownCommand implements CommandExecutor{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
         if(sender.isOp()){
             if (args.length < 1){
-                sender.sendMessage(ChatColor.RED + "Invalid paramaters. /countdown <seconds>");
+                sender.sendMessage(plugin.getConfigManager().getMessage("wrongUsage").replace("%usage%", command.getUsage()));
                 return true;
             }
 

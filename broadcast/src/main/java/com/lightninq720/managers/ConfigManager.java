@@ -12,6 +12,6 @@ public class ConfigManager {
     }
 
     public String getMessage(String messagepath){
-        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages." + messagepath));
+        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages." + messagepath)); // Get the message content from the constants file and add the correct colours
     }
 }

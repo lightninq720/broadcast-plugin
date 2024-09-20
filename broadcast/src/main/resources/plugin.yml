@@ -1,12 +1,12 @@
 name: Broadcast
-version: 1.1.1
+version: 1.1.2
 main: com.lightninq720.Broadcast
 description: Broadcast plugin
 
 commands:
   broadcast:
     description: Send a broadcasted message to all server players
-    usage: /broadcast <message>
+    usage: /broadcast <type> <message>
   countdown:
     description: Start a countdown to send to all server players
     usage: /countdown <seconds>

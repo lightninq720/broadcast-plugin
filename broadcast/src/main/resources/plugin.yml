@@ -9,4 +9,4 @@ commands:
     usage: /broadcast <type> <message>
   countdown:
     description: Start a countdown to send to all server players
-    usage: /countdown <seconds>
+    usage: /countdown <type> <seconds>

@@ -26,11 +26,11 @@ public class broadcastCommand implements CommandExecutor {
             return true;
         }
         if (!(args.length > 0)) {
-            sender.sendMessage(plugin.getConfigManager().getMessage("noType")); // The command sender did not provide a message to broadcast
+            sender.sendMessage(plugin.getConfigManager().getMessage("noType").replace("%usage%", command.getUsage())); // The command sender did not provide a message to broadcast
             return true;
         }
         else if (!(args.length > 1)) {
-            sender.sendMessage(plugin.getConfigManager().getMessage("noMessage")); // The command sender did not provide a message to broadcast
+            sender.sendMessage(plugin.getConfigManager().getMessage("noMessage").replace("%usage%", command.getUsage())); // The command sender did not provide a message to broadcast
             return true;
         }
         
@@ -50,7 +50,7 @@ public class broadcastCommand implements CommandExecutor {
                 }.runTaskLater(plugin, 60L); // 60 ticks = 3 seconds
             }
         } else {
-            sender.sendMessage(plugin.getConfigManager().getMessage("invalidType")); // The command sender provided an invalid type
+            sender.sendMessage(plugin.getConfigManager().getMessage("noType").replace("%usage%", command.getUsage())); // The command sender provided an invalid type
         }
         return true;
     }

@@ -37,6 +37,11 @@ public class broadcastCommand implements CommandExecutor {
         String type = args[0];
         String message = String.join(" ", Arrays.copyOfRange(args, 1, args.length)); // Join the message arguments
 
+        if (!Arrays.asList("text", "chat", "gui", "all").contains(type.toLowerCase())) {
+            sender.sendMessage(plugin.getConfigManager().getMessage("noType").replace("%usage%", command.getUsage())); // The command sender provided an invalid type
+            return true;
+        }
+
         if (type.equalsIgnoreCase("text") || type.equalsIgnoreCase("chat") || type.equalsIgnoreCase("all")) {
             Bukkit.broadcastMessage(plugin.getConfigManager().getMessage("broadcastPrefix") + ChatColor.WHITE + message); // Send the message to the server
         } if (type.equalsIgnoreCase("gui") || type.equalsIgnoreCase("all")) {
@@ -49,8 +54,6 @@ public class broadcastCommand implements CommandExecutor {
                     }
                 }.runTaskLater(plugin, 60L); // 60 ticks = 3 seconds
             }
-        } else {
-            sender.sendMessage(plugin.getConfigManager().getMessage("noType").replace("%usage%", command.getUsage())); // The command sender provided an invalid type
         }
         return true;
     }
